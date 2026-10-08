@@ -102,7 +102,7 @@ final class BalanceServiceTests: XCTestCase {
         let service = BalanceService.shared
         let unknownProviderId = UUID()
 
-        let balance = service.balance(for: unknownProviderId)
+        let balance = service.balance(for: unknownProviderId, projectId: UUID())
 
         XCTAssertNil(balance, "Unknown provider should return nil balance")
     }
@@ -111,7 +111,7 @@ final class BalanceServiceTests: XCTestCase {
         let service = BalanceService.shared
         let unknownProviderId = UUID()
 
-        let balanceInfo = service.balanceInfo(for: unknownProviderId)
+        let balanceInfo = service.balanceInfo(for: unknownProviderId, projectId: UUID())
 
         XCTAssertNil(balanceInfo, "Unknown provider should return nil balance info")
     }

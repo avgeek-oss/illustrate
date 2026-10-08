@@ -37,7 +37,7 @@ struct ProviderDetailsView: View {
 
     private var balance: Double? {
         guard isConnected else { return nil }
-        return balanceService.balance(for: selectedProvider.providerId)
+        return balanceService.balance(for: selectedProvider.providerId, projectId: projectManager.currentProjectId)
     }
 
     private var formattedBalance: String? {

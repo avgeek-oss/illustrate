@@ -19,6 +19,7 @@
 // - `fetchBalance`: Fetch for a single provider
 // - `fetchAllBalances`: Fetch all eligible providers in parallel
 
+import CryptoKit
 import Foundation
 import IllustrateProviders
 import KeychainSwift
@@ -33,6 +34,7 @@ struct ProviderBalance: Codable {
     let balance: Double
     /// When this balance was last fetched
     let lastUpdated: Date
+    var credentialFingerprint: String? = nil
 }
 
 /// Singleton service for fetching and caching provider balances.
@@ -45,37 +47,53 @@ class BalanceService: ObservableObject {
     static let shared = BalanceService()
 
     /// In-memory balance cache
-    @Published private var _balances: [UUID: ProviderBalance] = [:]
+    @Published private var _balances: [String: ProviderBalance] = [:]
 
     /// Keychain for persistent balance storage
-    private let keychain = KeychainSwift()
+    private let keychain: KeychainSwift
+    private let dataLoader: (URLRequest) async throws -> (Data, URLResponse)
 
-    /// Key prefix for balance storage
-    private let balanceKeyPrefix = "balance_"
-
-    private init() {
+    init(
+        keychain: KeychainSwift = KeychainSwift(),
+        dataLoader: @escaping (URLRequest) async throws -> (Data, URLResponse) = {
+            try await URLSession.shared.data(for: $0)
+        }
+    ) {
+        self.keychain = keychain
+        self.dataLoader = dataLoader
         keychain.accessGroup = TEAM_KEYCHAIN_AG
         keychain.synchronizable = true
-        loadCachedBalances()
     }
 
     // MARK: - Public API
 
     /// Get the cached balance for a provider
-    func balance(for providerId: UUID) -> Double? {
-        _balances[providerId]?.balance
+    func balance(for providerId: UUID, projectId: UUID) -> Double? {
+        balanceInfo(for: providerId, projectId: projectId)?.balance
     }
 
     /// Get the balance info for a provider
-    func balanceInfo(for providerId: UUID) -> ProviderBalance? {
-        _balances[providerId]
+    func balanceInfo(for providerId: UUID, projectId: UUID) -> ProviderBalance? {
+        let key = Self.cacheKey(providerId: providerId, projectId: projectId)
+        let credentialKey = ProjectManager.keychainKey(projectId: projectId, providerId: providerId)
+        guard let credential = keychain.get(credentialKey) else { return nil }
+        let cached = _balances[key] ?? keychain.getData(key).flatMap {
+            try? JSONDecoder().decode(ProviderBalance.self, from: $0)
+        }
+        guard let cached,
+              cached.providerId == providerId,
+              cached.credentialFingerprint == Self.fingerprint(credential)
+        else { return nil }
+        return cached
     }
 
     /// Fetch balance for all eligible providers
     func fetchAllBalances(providerKeys: [ProviderKey], projectId: UUID) async {
         let eligibleProviderIds = providers
             .filter(\.supportsBalanceCheck)
-            .filter { provider in providerKeys.contains { $0.providerId == provider.providerId } }
+            .filter { provider in
+                providerKeys.contains { $0.providerId == provider.providerId && $0.projectId == projectId }
+            }
             .map(\.providerId)
 
         await withTaskGroup(of: Void.self) { group in
@@ -107,7 +125,7 @@ class BalanceService: ObservableObject {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
 
-            let (data, response) = try await URLSession.shared.data(for: request)
+            let (data, response) = try await dataLoader(request)
 
             guard let httpResponse = response as? HTTPURLResponse,
                   httpResponse.statusCode == 200
@@ -117,18 +135,21 @@ class BalanceService: ObservableObject {
                 let providerBalance = ProviderBalance(
                     providerId: providerId,
                     balance: balance,
-                    lastUpdated: Date()
+                    lastUpdated: Date(),
+                    credentialFingerprint: Self.fingerprint(apiKey)
                 )
 
                 await MainActor.run {
-                    self._balances[providerId] = providerBalance
-                    self.saveBalanceToKeychain(providerBalance)
+                    guard self.keychain.get(keychainKey) == apiKey else { return }
+                    let cacheKey = Self.cacheKey(providerId: providerId, projectId: projectId)
+                    self._balances[cacheKey] = providerBalance
+                    self.saveBalanceToKeychain(providerBalance, key: cacheKey)
                 }
             }
         } catch {
             AppLogger.network
                 .error(
-                    "Error fetching balance for \(providerName, privacy: .public): \(error.localizedDescription, privacy: .public)"
+                    "Error fetching balance for \(providerName, privacy: .public): \(error.localizedDescription, privacy: .private)"
                 )
         }
     }
@@ -156,19 +177,15 @@ class BalanceService: ObservableObject {
         return nil
     }
 
-    private func loadCachedBalances() {
-        for provider in providers where provider.supportsBalanceCheck {
-            let key = balanceKeyPrefix + provider.providerId.uuidString
-            if let data = keychain.getData(key),
-               let balance = try? JSONDecoder().decode(ProviderBalance.self, from: data)
-            {
-                _balances[provider.providerId] = balance
-            }
-        }
+    private static func cacheKey(providerId: UUID, projectId: UUID) -> String {
+        "balance_\(projectId.uuidString)_\(providerId.uuidString)"
     }
 
-    private func saveBalanceToKeychain(_ balance: ProviderBalance) {
-        let key = balanceKeyPrefix + balance.providerId.uuidString
+    private static func fingerprint(_ credential: String) -> String {
+        SHA256.hash(data: Data(credential.utf8)).map { String(format: "%02x", $0) }.joined()
+    }
+
+    private func saveBalanceToKeychain(_ balance: ProviderBalance, key: String) {
         if let data = try? JSONEncoder().encode(balance) {
             keychain.set(data, forKey: key)
         }

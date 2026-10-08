@@ -54,7 +54,7 @@ struct VideoGenerateView: View {
 
     private var providerBalance: Double? {
         guard let model = viewModel.getSelectedModel() else { return nil }
-        return balanceService.balance(for: model.providerId)
+        return balanceService.balance(for: model.providerId, projectId: projectManager.currentProjectId)
     }
 
     private var selectedProviderSecret: String? {
