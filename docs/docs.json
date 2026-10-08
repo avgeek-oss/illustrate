@@ -1,0 +1,168 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "appearance": {
+    "default": "system"
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs",
+    "codeblocks": "system"
+  },
+  "interaction": {
+    "drilldown": false
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude"]
+  },
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:type": "website",
+      "twitter:card": "summary_large_image",
+      "canonical": "https://illustrate.so"
+    }
+  },
+  "name": "Illustrate",
+  "description": "Create AI images and videos on iPhone, iPad, and Mac using your own provider accounts.",
+  "logo": {
+    "light": "/assets/logo.png",
+    "dark": "/assets/logo.png",
+    "href": "/"
+  },
+  "favicon": "/assets/logo.png",
+  "colors": {
+    "primary": "#805B00",
+    "light": "#FFD600",
+    "dark": "#805B00"
+  },
+  "navigation": {
+    "dropdowns": [
+      {
+        "dropdown": "Using Illustrate",
+        "icon": "book-open",
+        "groups": [
+          {
+            "group": "Get started",
+            "pages": ["docs/introduction", "docs/getting-started"]
+          },
+          {
+            "group": "AI providers",
+            "pages": ["docs/providers"]
+          }
+        ]
+      },
+      {
+        "dropdown": "Build & privacy",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Your own copy",
+            "pages": ["docs/build-from-source"]
+          },
+          {
+            "group": "Your data",
+            "pages": ["docs/privacy"]
+          }
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Docs",
+      "href": "/docs/introduction"
+    }
+  },
+  "footer": {
+    "links": [
+      {
+        "header": "Documentation",
+        "items": [
+          {
+            "label": "Get started",
+            "href": "/docs/getting-started"
+          },
+          {
+            "label": "Supported providers",
+            "href": "/docs/providers"
+          },
+          {
+            "label": "Build your own copy",
+            "href": "/docs/build-from-source"
+          },
+          {
+            "label": "Data & privacy",
+            "href": "/docs/privacy"
+          }
+        ]
+      },
+      {
+        "header": "Our OSS Philosophy",
+        "items": [
+          {
+            "label": "Why we publish our code",
+            "href": "https://github.com/avgeek-oss/.github/blob/main/profile/README.md"
+          },
+          {
+            "label": "Illustrate source",
+            "href": "https://github.com/avgeek-oss/illustrate"
+          },
+          {
+            "label": "Report an issue",
+            "href": "https://github.com/avgeek-oss/illustrate/issues"
+          },
+          {
+            "label": "Apache-2.0 license",
+            "href": "https://github.com/avgeek-oss/illustrate/blob/main/LICENSE"
+          }
+        ]
+      },
+      {
+        "header": "Other OSS Apps",
+        "items": [
+          {
+            "label": "DNSDeck · Manage your DNS",
+            "href": "https://github.com/avgeek-oss/dnsdeck"
+          },
+          {
+            "label": "Towbar · Deploy your apps",
+            "href": "https://github.com/avgeek-oss/towbar"
+          },
+          {
+            "label": "Vitalog · Keep your health ledger",
+            "href": "https://github.com/avgeek-oss/vitalog"
+          },
+          {
+            "label": "All OSS projects",
+            "href": "https://github.com/avgeek-oss/.github/blob/main/profile/README.md#whats-in-the-list"
+          }
+        ]
+      }
+    ],
+    "socials": {
+      "github": "https://github.com/avgeek-oss/illustrate"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/getting-started",
+      "destination": "/docs/getting-started"
+    },
+    {
+      "source": "/build-from-source",
+      "destination": "/docs/build-from-source"
+    },
+    {
+      "source": "/providers",
+      "destination": "/docs/providers"
+    },
+    {
+      "source": "/security",
+      "destination": "/docs/privacy"
+    }
+  ]
+}

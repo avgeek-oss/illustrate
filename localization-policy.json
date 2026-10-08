@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "name": "Illustrate",
+  "productName": "Illustrate",
+  "userAgent": "Illustrate/AppleLocalization",
+  "catalog": {
+    "nonTranslatableKeys": [
+      "CFBundleDisplayName",
+      "CFBundleName"
+    ],
+    "protectedTerms": [
+      "Illustrate",
+      "GenAI",
+      "OpenAI",
+      "Stability AI",
+      "Google Cloud",
+      "Google Vertex AI",
+      "Replicate",
+      "Fal AI",
+      "Firecrawl",
+      "Cloudflare",
+      "Luma AI",
+      "Runway",
+      "Kling AI",
+      "PixVerse",
+      "Vidu",
+      "Recraft",
+      "Black Forest Labs",
+      "xAI",
+      "MiniMax",
+      "BytePlus",
+      "Alibaba",
+      "Amazon Bedrock",
+      "Azure AI Foundry",
+      "DeepInfra",
+      "Novita AI",
+      "Bria",
+      "Ideogram",
+      "LTX",
+      "Sora",
+      "Veo",
+      "FLUX",
+      "iCloud",
+      "SwiftUI",
+      "API",
+      "CSV",
+      "JSON",
+      "URL"
+    ]
+  }
+}

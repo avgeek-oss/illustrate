@@ -1,0 +1,831 @@
+// MARK: - EnumProviderModelCode.swift
+
+import Foundation
+
+// MARK: - Provider Model Code Enumeration
+
+/// Unique identifier codes for all supported AI models across all providers.
+///
+/// This comprehensive enum lists every model supported by Illustrate, organized by provider.
+/// Each case generates a deterministic UUID for consistent identification.
+///
+/// ## Adding New Models
+/// 1. Add a case to this enum following the PROVIDER_MODEL naming convention
+/// 2. Create the model definition in the appropriate Services/Provider/Models/ file
+/// 3. Implement the generation protocol in Services/Provider/Protocols/
+public enum EnumProviderModelCode: String, Codable, CaseIterable, Identifiable, Sendable {
+    public var id: String {
+        rawValue
+    }
+
+    // MARK: OpenAI Models
+
+    case OPENAI_DALLE3
+    case OPENAI_GPT_IMAGE_1
+    case OPENAI_GPT_IMAGE_1_MINI
+    case OPENAI_GPT_IMAGE_1_5
+    case OPENAI_GPT_IMAGE_2
+    case OPENAI_SORA_2
+    case OPENAI_SORA_2_REMIX
+    case OPENAI_SORA_2_PRO
+    case OPENAI_SORA_2_PRO_REMIX
+
+    // MARK: Stability AI Models - Generation
+
+    case STABILITY_SDXL
+    case STABILITY_SD3
+    case STABILITY_SD3_TURBO
+    case STABILITY_SD35_LARGE
+    case STABILITY_SD35_LARGE_TURBO
+    case STABILITY_SD35_MEDIUM
+    case STABILITY_SD35_FLASH
+    case STABILITY_CORE
+    case STABILITY_ULTRA
+
+    // MARK: Stability AI Models - Editing & Enhancement
+
+    case STABILITY_CONSERVATIVE_UPSCALE
+    case STABILITY_CREATIVE_UPSCALE
+    case STABILITY_FAST_UPSCALE
+    case STABILITY_ERASE
+    case STABILITY_INPAINT
+    case STABILITY_OUTPAINT
+    case STABILITY_SEARCH_AND_REPLACE
+    case STABILITY_SEARCH_AND_RECOLOR
+    case STABILITY_REMOVE_BACKGROUND
+    case STABILITY_IMAGE_TO_VIDEO
+
+    // MARK: Replicate Models
+
+    case REPLICATE_FLUX_SCHNELL
+    case REPLICATE_FLUX_DEV
+    case REPLICATE_FLUX_PRO
+    case REPLICATE_SEEDREAM_3
+    case REPLICATE_SEEDREAM_4
+    case REPLICATE_SEEDREAM_4_5
+    case REPLICATE_DREAMINA_3_1
+    case REPLICATE_SEEDANCE_1_PRO
+    case REPLICATE_SEEDANCE_1_PRO_FAST
+    case REPLICATE_SEEDANCE_1_LITE
+    case REPLICATE_SEEDANCE_1_5_PRO
+    case REPLICATE_HAILUO_02
+    case REPLICATE_HAILUO_02_FAST
+    case REPLICATE_HAILUO_2_3
+    case REPLICATE_HAILUO_2_3_FAST
+    case REPLICATE_FLUX_2_FLEX
+    case REPLICATE_FLUX_2_PRO
+    case REPLICATE_FLUX_2_KLEIN
+    case REPLICATE_FLUX_2_MAX
+    case REPLICATE_FLUX_2_DEV
+    case REPLICATE_FLUX_KREA_DEV
+    case REPLICATE_KREA_2_MEDIUM
+    case REPLICATE_KREA_2_LARGE
+    case REPLICATE_FLUX_KONTEXT_MAX
+    case REPLICATE_FLUX_KONTEXT_DEV
+    case REPLICATE_FLUX_KONTEXT_PRO
+    case REPLICATE_QWEN_IMAGE
+    case REPLICATE_QWEN_IMAGE_2
+    case REPLICATE_QWEN_IMAGE_2_PRO
+    case REPLICATE_REVE_2_1
+    case REPLICATE_QWEN_IMAGE_EDIT
+    case REPLICATE_QWEN_IMAGE_EDIT_PLUS
+    case REPLICATE_QWEN_IMAGE_EDIT_2511
+    case REPLICATE_QWEN_IMAGE_EDIT_2512
+    case REPLICATE_MINIMAX_IMAGE_01
+    case REPLICATE_LUMA_PHOTON
+    case REPLICATE_LUMA_PHOTON_FLASH
+    case REPLICATE_LUMA_RAY
+    case REPLICATE_LUMA_RAY_2_540P
+    case REPLICATE_LUMA_RAY_2_720P
+    case REPLICATE_LUMA_RAY_FLASH_2_540P
+    case REPLICATE_LUMA_RAY_FLASH_2_720P
+    case REPLICATE_LUMA_MODIFY_VIDEO
+    case REPLICATE_STABLE_DIFFUSION_3
+    case REPLICATE_STABLE_DIFFUSION_3_5_LARGE
+    case REPLICATE_STABLE_DIFFUSION_3_5_LARGE_TURBO
+    case REPLICATE_STABLE_DIFFUSION_3_5_MEDIUM
+    case REPLICATE_GOOGLE_NANO_BANANA
+    case REPLICATE_GOOGLE_NANO_BANANA_PRO
+    case REPLICATE_GOOGLE_GEMINI_2_5_FLASH_IMAGE
+    case REPLICATE_GOOGLE_IMAGEN_3
+    case REPLICATE_GOOGLE_IMAGEN_4
+    case REPLICATE_GOOGLE_IMAGEN_4_FAST
+    case REPLICATE_GOOGLE_IMAGEN_4_ULTRA
+    case REPLICATE_GOOGLE_IMAGEN_3_FAST
+    case REPLICATE_GOOGLE_VEO_3
+    case REPLICATE_GOOGLE_VEO_3_FAST
+    case REPLICATE_GOOGLE_VEO_3_1
+    case REPLICATE_GOOGLE_VEO_3_1_FAST
+    case REPLICATE_PRUNA_P_IMAGE
+    case REPLICATE_PRUNA_P_IMAGE_EDIT
+    case REPLICATE_PRUNA_FLUX_FAST
+    case REPLICATE_PRUNA_FLUX_KONTEXT_FAST
+    case REPLICATE_PRUNA_Z_IMAGE_TURBO
+    case REPLICATE_PRUNA_Z_IMAGE_TURBO_I2I
+    case REPLICATE_KLING_2_5_TURBO_PRO
+    case REPLICATE_KLING_2_6
+    case REPLICATE_WAN_2_6_I2V
+    case REPLICATE_WAN_2_6_T2V
+    case REPLICATE_WAN_2_5_I2V
+    case REPLICATE_WAN_2_5_T2V
+    case REPLICATE_WAN_2_5_I2V_FAST
+    case REPLICATE_WAN_2_5_T2V_FAST
+    case REPLICATE_OPENAI_GPT_IMAGE_1_5
+    case REPLICATE_OPENAI_GPT_IMAGE_2
+    case REPLICATE_OPENAI_DALL_E_3
+    case REPLICATE_OPENAI_DALL_E_2
+    case REPLICATE_OPENAI_SORA_2
+    case REPLICATE_OPENAI_SORA_2_PRO
+
+    // MARK: Replicate Models - Ideogram
+
+    case REPLICATE_IDEOGRAM_V3
+    case REPLICATE_IDEOGRAM_V3_QUALITY
+    case REPLICATE_IDEOGRAM_V3_FAST
+    case REPLICATE_IDEOGRAM_V4_TURBO
+    case REPLICATE_IDEOGRAM_V4_BALANCED
+    case REPLICATE_IDEOGRAM_V4_QUALITY
+
+    // MARK: Replicate Models - Recraft V4
+
+    case REPLICATE_RECRAFT_V4
+    case REPLICATE_RECRAFT_V4_PRO
+
+    // MARK: Replicate Models - PrunaAI P-Video
+
+    case REPLICATE_PRUNA_P_VIDEO
+
+    // MARK: Replicate Models - WAN 2.7
+
+    case REPLICATE_WAN_2_7_T2V
+    case REPLICATE_WAN_2_7_I2V
+    case REPLICATE_WAN_2_7_IMAGE
+    case REPLICATE_WAN_2_7_IMAGE_PRO
+    case REPLICATE_WAN_2_7_R2V
+
+    // MARK: Replicate Models - FLUX 1.1 Pro Ultra
+
+    case REPLICATE_FLUX_11_PRO_ULTRA
+
+    // MARK: Replicate Models - HiDream L1 Fast
+
+    case REPLICATE_HIDREAM_L1_FAST
+
+    // MARK: Replicate Models - Hunyuan Image 3
+
+    case REPLICATE_HUNYUAN_IMAGE_3
+
+    // MARK: Replicate Models - Vidu Q3 Pro
+
+    case REPLICATE_VIDU_Q3_PRO
+    case REPLICATE_VIDU_Q3_TURBO
+
+    // MARK: Replicate Models - Kling V3 Video
+
+    case REPLICATE_KLING_V3_VIDEO
+
+    // MARK: Replicate Models - Seedance 2.0 Fast
+
+    case REPLICATE_SEEDANCE_2_FAST
+    case REPLICATE_SEEDANCE_2_MINI
+
+    // MARK: Replicate Models - PixVerse V5.6
+
+    case REPLICATE_PIXVERSE_V5_6
+
+    // MARK: Replicate Models - Google Nano Banana 2
+
+    case REPLICATE_GOOGLE_NANO_BANANA_2
+
+    // MARK: Replicate Models - ByteDance Seedance 2.0
+
+    case REPLICATE_SEEDANCE_2
+
+    // MARK: Replicate Models - ByteDance Seedream 5
+
+    case REPLICATE_SEEDREAM_5_PRO
+    case REPLICATE_SEEDREAM_5_LITE
+
+    // MARK: Replicate Models - xAI Grok
+
+    case REPLICATE_XAI_GROK_IMAGINE_IMAGE
+    case REPLICATE_XAI_GROK_IMAGINE_IMAGE_QUALITY
+    case REPLICATE_XAI_GROK_IMAGINE_VIDEO
+
+    // MARK: Replicate Models - Kling V3 Omni
+
+    case REPLICATE_KLING_V3_OMNI
+
+    // MARK: Replicate Models - PixVerse V6
+
+    case REPLICATE_PIXVERSE_V6
+
+    // MARK: Replicate Models - Google Veo 3.1 Lite
+
+    case REPLICATE_GOOGLE_VEO_3_1_LITE
+
+    // MARK: Replicate Models - Alibaba Happy Horse
+
+    case REPLICATE_HAPPY_HORSE_1
+    case REPLICATE_HAPPY_HORSE_1_1
+
+    // MARK: Replicate Models - Luma Ray 3.2
+
+    case REPLICATE_LUMA_RAY_3_2
+
+    // MARK: Replicate Models - Runway Gen-4.5
+
+    case REPLICATE_RUNWAY_GEN_4_5
+
+    // MARK: Replicate Models - Recraft V4.1
+
+    case REPLICATE_RECRAFT_V4_1
+    case REPLICATE_RECRAFT_V4_1_PRO
+
+    // MARK: Replicate Models - Catalog Refresh
+
+    case REPLICATE_FLUX_FILL_PRO
+    case REPLICATE_BRIA_FIBO
+    case REPLICATE_BRIA_FIBO_EDIT
+    case REPLICATE_BRIA_IMAGE_3_2
+    case REPLICATE_BRIA_ERASER
+    case REPLICATE_BRIA_GENFILL
+    case REPLICATE_BRIA_EXPAND_IMAGE
+    case REPLICATE_BRIA_GENERATE_BACKGROUND
+    case REPLICATE_RIVERFLOW_2_5_PRO
+    case REPLICATE_RIVERFLOW_2_5_FAST
+    case REPLICATE_XAI_GROK_IMAGINE_VIDEO_1_5
+    case REPLICATE_BYTEDANCE_DREAMACTOR_M2_0
+    case REPLICATE_PRUNA_P_VIDEO_ANIMATE
+    case REPLICATE_KLING_O1
+
+    // MARK: Fal AI Models - FLUX 1
+
+    case FAL_FLUX_SCHNELL
+    case FAL_FLUX_DEV
+    case FAL_FLUX_PRO
+    case FAL_FLUX_DEV_IMAGE_TO_IMAGE
+    case FAL_FLUX_DEV_REDUX
+    case FAL_FLUX_SCHNELL_REDUX
+
+    // MARK: Fal AI Models - FLUX 2
+
+    case FAL_FLUX_2
+    case FAL_FLUX_2_PRO
+    case FAL_FLUX_2_PRO_EDIT
+    case FAL_FLUX_2_EDIT
+    case FAL_FLUX_2_FLEX
+    case FAL_FLUX_2_FLEX_EDIT
+    case FAL_FLUX_2_MAX
+    case FAL_FLUX_2_MAX_EDIT
+    case FAL_FLUX_2_TURBO
+    case FAL_FLUX_2_TURBO_EDIT
+    case FAL_FLUX_2_KLEIN_4B
+    case FAL_FLUX_2_KLEIN_4B_EDIT
+    case FAL_FLUX_2_KLEIN_9B
+    case FAL_FLUX_2_FLASH
+    case FAL_FLUX_2_FLASH_EDIT
+
+    // MARK: Fal AI Models - FLUX Kontext
+
+    case FAL_FLUX_KONTEXT_DEV
+    case FAL_FLUX_PRO_KONTEXT
+    case FAL_FLUX_PRO_KONTEXT_MAX
+    case FAL_FLUX_PRO_KONTEXT_T2I
+    case FAL_FLUX_PRO_KONTEXT_MAX_T2I
+
+    // MARK: Fal AI Models - Bria
+
+    case FAL_BRIA_FIBO_EDIT_REPLACE_OBJECT
+    case FAL_BRIA_FIBO_EDIT_SKETCH_TO_IMAGE
+    case FAL_BRIA_FIBO_EDIT_RESTORE
+    case FAL_BRIA_FIBO_EDIT_RESEASON
+    case FAL_BRIA_FIBO_EDIT_RELIGHT
+    case FAL_BRIA_FIBO_EDIT_RESTYLE
+    case FAL_BRIA_FIBO_EDIT_REWRITE_TEXT
+    case FAL_BRIA_FIBO_EDIT_ERASE_BY_TEXT
+    case FAL_BRIA_FIBO_EDIT_EDIT
+    case FAL_BRIA_FIBO_EDIT_ADD_OBJECT
+    case FAL_BRIA_FIBO_EDIT_BLEND
+    case FAL_BRIA_FIBO_EDIT_COLORIZE
+    case FAL_BRIA_FIBO_GENERATE
+    case FAL_BRIA_REIMAGINE_3_2
+    case FAL_BRIA_REIMAGINE
+    case FAL_BRIA_BACKGROUND_REMOVE
+
+    // MARK: Fal AI Models - Luma Photon
+
+    case FAL_LUMA_PHOTON
+    case FAL_LUMA_PHOTON_FLASH
+    case FAL_LUMA_PHOTON_MODIFY
+    case FAL_LUMA_PHOTON_FLASH_MODIFY
+    case FAL_LUMA_PHOTON_REFRAME
+    case FAL_LUMA_PHOTON_FLASH_REFRAME
+
+    // MARK: Fal AI Models - GLM
+
+    case FAL_GLM_IMAGE
+    case FAL_GLM_IMAGE_TO_IMAGE
+
+    // MARK: Fal AI Models - Qwen
+
+    case FAL_QWEN_IMAGE
+    case FAL_QWEN_IMAGE_2512
+    case FAL_QWEN_IMAGE_TO_IMAGE
+    case FAL_QWEN_IMAGE_EDIT
+    case FAL_QWEN_IMAGE_EDIT_PLUS
+    case FAL_QWEN_IMAGE_EDIT_IMAGE_TO_IMAGE
+    case FAL_QWEN_IMAGE_EDIT_INPAINT
+    case FAL_QWEN_IMAGE_LAYERED
+    case FAL_QWEN_IMAGE_EDIT_2511
+    case FAL_QWEN_IMAGE_EDIT_2511_MULTIPLE_ANGLES
+    case FAL_QWEN_IMAGE_EDIT_2509
+
+    // MARK: Fal AI Models - WAN
+
+    case FAL_WAN_V26_TEXT_TO_IMAGE
+    case FAL_WAN_V26_IMAGE_TO_IMAGE
+
+    // MARK: Fal AI Models - ByteDance
+
+    case FAL_BYTEDANCE_SEEDREAM_V45_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_SEEDREAM_V45_EDIT
+    case FAL_BYTEDANCE_SEEDREAM_V4_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_SEEDREAM_V4_EDIT
+    case FAL_BYTEDANCE_SEEDREAM_V3_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_DREAMINA_V31_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_BAGEL
+    case FAL_BYTEDANCE_BAGEL_EDIT
+    case FAL_BYTEDANCE_SEEDREAM_V5_PRO_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_SEEDREAM_V5_PRO_EDIT
+    case FAL_BYTEDANCE_SEEDREAM_V5_LITE_TEXT_TO_IMAGE
+    case FAL_BYTEDANCE_SEEDREAM_V5_LITE_EDIT
+    case FAL_BYTEDANCE_BERNINI_R_EDIT_IMAGE
+
+    // MARK: Fal AI Models - Kling
+
+    case FAL_KLING_IMAGE_O1
+
+    // MARK: Fal AI Models - OpenAI GPT Image
+
+    case FAL_GPT_IMAGE_1_MINI
+    case FAL_GPT_IMAGE_1_MINI_EDIT
+    case FAL_GPT_IMAGE_1
+    case FAL_GPT_IMAGE_1_EDIT
+    case FAL_GPT_IMAGE_15
+    case FAL_GPT_IMAGE_15_EDIT
+    case FAL_GPT_IMAGE_2
+    case FAL_GPT_IMAGE_2_EDIT
+
+    // MARK: Fal AI Models - Z-Image
+
+    case FAL_ZIMAGE_TURBO
+    case FAL_ZIMAGE_TURBO_IMAGE_TO_IMAGE
+    case FAL_ZIMAGE_TURBO_INPAINT
+    case FAL_ZIMAGE_TURBO_INPAINT_LORA
+    case FAL_KREA_2_TURBO
+    case FAL_IDEOGRAM_V4
+    case FAL_IDEOGRAM_V4_FAST
+    case FAL_IDEOGRAM_V4_INSTANT
+
+    // MARK: Fal AI Models - Google
+
+    case FAL_GOOGLE_GEMINI_3_PRO_IMAGE
+    case FAL_GOOGLE_GEMINI_3_PRO_IMAGE_EDIT
+    case FAL_GOOGLE_NANO_BANANA_PRO
+    case FAL_GOOGLE_NANO_BANANA_PRO_EDIT
+    case FAL_GOOGLE_GEMINI_25_FLASH_IMAGE
+    case FAL_GOOGLE_GEMINI_25_FLASH_IMAGE_EDIT
+    case FAL_GOOGLE_NANO_BANANA
+    case FAL_GOOGLE_NANO_BANANA_EDIT
+    case FAL_GOOGLE_NANO_BANANA_2
+    case FAL_GOOGLE_NANO_BANANA_2_EDIT
+    case FAL_GOOGLE_NANO_BANANA_LITE
+    case FAL_GOOGLE_NANO_BANANA_LITE_EDIT
+    case FAL_GOOGLE_NANO_BANANA_2_LITE
+    case FAL_GOOGLE_IMAGEN4_PREVIEW
+    case FAL_GOOGLE_IMAGEN4_PREVIEW_FAST
+    case FAL_GOOGLE_IMAGEN4_PREVIEW_ULTRA
+
+    // MARK: Fal AI Models - Half Moon AI Home
+
+    case FAL_HALFMOON_AI_HOME_STYLE
+    case FAL_HALFMOON_AI_HOME_EDIT
+
+    // MARK: Fal AI Models - Recraft
+
+    case FAL_RECRAFT_V3
+    case FAL_RECRAFT_V4_1
+    case FAL_RECRAFT_V4_1_EDIT
+    case FAL_RECRAFT_V4_1_ULTRA
+    case FAL_RECRAFT_V4_1_ULTRA_EDIT
+
+    // MARK: Fal AI Models - xAI Grok Imagine
+
+    case FAL_XAI_GROK_IMAGINE_IMAGE
+    case FAL_XAI_GROK_IMAGINE_IMAGE_EDIT
+    case FAL_XAI_GROK_IMAGINE_IMAGE_QUALITY
+    case FAL_XAI_GROK_IMAGINE_IMAGE_QUALITY_EDIT
+
+    // MARK: Fal AI Models - HiDream
+
+    case FAL_HIDREAM_O1_IMAGE
+    case FAL_HIDREAM_O1_IMAGE_DEV
+    case FAL_HIDREAM_O1_IMAGE_EDIT
+    case FAL_HIDREAM_O1_IMAGE_DEV_EDIT
+
+    // MARK: Fal AI Models - Baidu ERNIE
+
+    case FAL_ERNIE_IMAGE_LORA
+    case FAL_ERNIE_IMAGE_LORA_TURBO
+
+    // MARK: Google Cloud Models
+
+    case GOOGLE_GEMINI_FLASH_IMAGE
+    case GOOGLE_GEMINI_31_FLASH_IMAGE
+    case GOOGLE_GEMINI_31_FLASH_LITE_IMAGE
+    case GOOGLE_GEMINI_PRO_IMAGE
+    case GOOGLE_IMAGEN_3
+    case GOOGLE_IMAGEN_4_FAST
+    case GOOGLE_IMAGEN_4_STANDARD
+    case GOOGLE_IMAGEN_4_ULTRA
+    case GOOGLE_VEO_31
+    case GOOGLE_VEO_31_EXTEND
+    case GOOGLE_VEO_31_FAST
+    case GOOGLE_VEO_31_FAST_EXTEND
+    case GOOGLE_VEO_3
+    case GOOGLE_VEO_3_FAST
+    case GOOGLE_VEO_2
+    case GOOGLE_VEO_31_LITE
+    case GOOGLE_GEMINI_OMNI_FLASH_VIDEO
+    case GOOGLE_GEMINI_OMNI_FLASH_VIDEO_EDIT
+
+    // MARK: Fal AI Video Models - Google Veo
+
+    case FAL_VEO_3_FAST
+    case FAL_VEO_3
+    case FAL_VEO_3_I2V
+    case FAL_VEO_3_FAST_I2V
+    case FAL_VEO_31_FAST
+    case FAL_VEO_31
+    case FAL_VEO_31_LITE
+    case FAL_VEO_31_I2V
+    case FAL_VEO_31_FAST_I2V
+    case FAL_VEO_31_LITE_I2V
+    case FAL_VEO_31_REF_TO_VIDEO
+    case FAL_VEO_31_FIRST_LAST_FRAME
+    case FAL_VEO_31_FAST_FIRST_LAST_FRAME
+    case FAL_VEO_31_LITE_FIRST_LAST_FRAME
+    case FAL_VEO_31_FAST_REF_TO_VIDEO
+    case FAL_VEO_31_EXTEND
+    case FAL_VEO_31_FAST_EXTEND
+    case FAL_VEO_2
+    case FAL_VEO_2_I2V
+    case FAL_GOOGLE_GEMINI_OMNI_FLASH_T2V
+    case FAL_GOOGLE_GEMINI_OMNI_FLASH_I2V
+    case FAL_GOOGLE_GEMINI_OMNI_FLASH_REF2V
+    case FAL_GOOGLE_GEMINI_OMNI_FLASH_EDIT
+
+    // MARK: Fal AI Video Models - ByteDance Seedance
+
+    case FAL_SEEDANCE_V1_PRO_T2V
+    case FAL_SEEDANCE_V1_PRO_I2V
+    case FAL_SEEDANCE_V1_PRO_FAST_T2V
+    case FAL_SEEDANCE_V1_PRO_FAST_I2V
+    case FAL_SEEDANCE_V1_LITE_T2V
+    case FAL_SEEDANCE_V1_LITE_I2V
+    case FAL_SEEDANCE_V1_LITE_REF2V
+    case FAL_SEEDANCE_V15_PRO_T2V
+    case FAL_SEEDANCE_V15_PRO_I2V
+    case FAL_SEEDANCE_V2_T2V
+    case FAL_SEEDANCE_V2_I2V
+    case FAL_SEEDANCE_V2_REF2V
+    case FAL_SEEDANCE_V2_FAST_T2V
+    case FAL_SEEDANCE_V2_FAST_I2V
+    case FAL_SEEDANCE_V2_FAST_REF2V
+    case FAL_SEEDANCE_V2_MINI_T2V
+    case FAL_SEEDANCE_V2_MINI_I2V
+    case FAL_SEEDANCE_V2_MINI_REF2V
+    case FAL_LYNX
+
+    // MARK: Fal AI Video Models - Catalog Refresh
+
+    case FAL_BYTEDANCE_BERNINI_R_T2V
+    case FAL_BYTEDANCE_BERNINI_R_REF2V
+    case FAL_BYTEDANCE_BERNINI_R_EDIT_VIDEO
+    case FAL_BYTEDANCE_BERNINI_R_REFERENCE_EDIT_VIDEO
+    case FAL_BYTEDANCE_DREAMACTOR_V2
+    case FAL_BYTEDANCE_VIDEO_UPSCALER
+    case FAL_BYTEDANCE_OMNIHUMAN_V15
+    case FAL_LTX_23_EXTEND
+
+    // MARK: Fal AI Video Models - Wan
+
+    case FAL_WAN_27_T2V
+    case FAL_WAN_27_I2V
+    case FAL_WAN_22_A14B_T2V
+    case FAL_WAN_22_A14B_I2V
+    case FAL_WAN_22_A14B_TURBO_T2V
+    case FAL_WAN_22_A14B_TURBO_I2V
+    case FAL_WAN_22_5B_T2V
+    case FAL_WAN_22_5B_I2V
+    case FAL_WAN_21_T2V
+    case FAL_WAN_21_I2V
+    case FAL_WAN_21_FLF2V
+    case FAL_WAN_PRO_T2V
+    case FAL_WAN_PRO_I2V
+
+    // MARK: Fal AI Video Models - Pika
+
+    case FAL_PIKA_SCENES
+
+    // MARK: Fal AI Video Models - Kling
+
+    case FAL_KLING_V26_PRO_T2V
+    case FAL_KLING_V26_PRO_I2V
+    case FAL_KLING_V25_TURBO_PRO_T2V
+    case FAL_KLING_V25_TURBO_PRO_I2V
+    case FAL_KLING_V25_TURBO_STD_I2V
+    case FAL_KLING_V21_MASTER_T2V
+    case FAL_KLING_V21_MASTER_I2V
+    case FAL_KLING_V21_PRO_I2V
+    case FAL_KLING_V21_STD_I2V
+    case FAL_KLING_V20_MASTER_T2V
+    case FAL_KLING_V20_MASTER_I2V
+    case FAL_KLING_V16_PRO_T2V
+    case FAL_KLING_V16_PRO_I2V
+    case FAL_KLING_V16_STD_T2V
+    case FAL_KLING_V16_STD_I2V
+    case FAL_KLING_V15_PRO_T2V
+    case FAL_KLING_V15_PRO_I2V
+    case FAL_KLING_V10_PRO_T2V
+    case FAL_KLING_V10_PRO_I2V
+    case FAL_KLING_V10_STD_T2V
+    case FAL_KLING_V10_STD_I2V
+    case FAL_KLING_V3_PRO_I2V
+    case FAL_KLING_V3_PRO_T2V
+    case FAL_KLING_V3_STD_T2V
+    case FAL_KLING_V3_STD_I2V
+    case FAL_KLING_V3_4K_T2V
+    case FAL_KLING_V3_4K_I2V
+    case FAL_KLING_O3_4K_T2V
+    case FAL_KLING_O3_4K_I2V
+    case FAL_KLING_O3_4K_REF2V
+    case FAL_KLING_O1_I2V
+    case FAL_KLING_O1_REF2V
+    case FAL_KLING_LIPSYNC_A2V
+    case FAL_KLING_LIPSYNC_T2V
+
+    // MARK: Fal AI Video Models - OpenAI Sora
+
+    case FAL_SORA_2_PRO_T2V
+    case FAL_SORA_2_PRO_I2V
+    case FAL_SORA_2_T2V
+    case FAL_SORA_2_I2V
+
+    // MARK: Fal AI Video Models - MiniMax
+
+    case FAL_MINIMAX_HAILUO_23_PRO_T2V
+    case FAL_MINIMAX_HAILUO_23_PRO_I2V
+    case FAL_MINIMAX_HAILUO_23_STD_T2V
+    case FAL_MINIMAX_HAILUO_23_STD_I2V
+    case FAL_MINIMAX_HAILUO_23_FAST_PRO_I2V
+    case FAL_MINIMAX_HAILUO_23_FAST_STD_I2V
+    case FAL_MINIMAX_HAILUO_02_PRO_T2V
+    case FAL_MINIMAX_HAILUO_02_PRO_I2V
+    case FAL_MINIMAX_HAILUO_02_STD_T2V
+    case FAL_MINIMAX_HAILUO_02_STD_I2V
+    case FAL_MINIMAX_VIDEO_01_I2V
+    case FAL_MINIMAX_VIDEO_01_DIRECTOR
+    case FAL_MINIMAX_VIDEO_01_DIRECTOR_I2V
+    case FAL_MINIMAX_VIDEO_01_LIVE
+    case FAL_MINIMAX_VIDEO_01_LIVE_I2V
+    case FAL_MINIMAX_VIDEO_01_SUBJECT_REF
+
+    // MARK: Fal AI Video Models - PixVerse
+
+    case FAL_PIXVERSE_V6_T2V
+    case FAL_PIXVERSE_V6_I2V
+
+    // MARK: Fal AI Video Models - Alibaba Happy Horse
+
+    case FAL_HAPPY_HORSE_T2V
+    case FAL_HAPPY_HORSE_I2V
+    case FAL_HAPPY_HORSE_REF2V
+    case FAL_HAPPY_HORSE_V11_I2V
+    case FAL_HAPPY_HORSE_V11_REF2V
+
+    // MARK: Together AI Models - Image
+
+    case TOGETHER_FLUX_SCHNELL
+    case TOGETHER_FLUX_11_PRO
+    case TOGETHER_FLUX_2_PRO
+    case TOGETHER_FLUX_2_DEV
+    case TOGETHER_FLUX_2_FLEX
+    case TOGETHER_FLUX_2_MAX
+    case TOGETHER_FLUX_KONTEXT_PRO
+    case TOGETHER_FLUX_KONTEXT_MAX
+    case TOGETHER_FLUX_KREA_DEV
+    case TOGETHER_SD3
+    case TOGETHER_SDXL
+    case TOGETHER_IMAGEN_4_PREVIEW
+    case TOGETHER_IMAGEN_4_FAST
+    case TOGETHER_IMAGEN_4_ULTRA
+    case TOGETHER_FLASH_IMAGE_25
+    case TOGETHER_GEMINI_3_PRO_IMAGE
+    case TOGETHER_FLASH_IMAGE_31
+    case TOGETHER_SEEDREAM_3
+    case TOGETHER_SEEDREAM_4
+    case TOGETHER_IDEOGRAM_3
+    case TOGETHER_QWEN_IMAGE
+    case TOGETHER_QWEN_IMAGE_PRO
+    case TOGETHER_HIDREAM_FULL
+    case TOGETHER_HIDREAM_DEV
+    case TOGETHER_HIDREAM_FAST
+    case TOGETHER_WAN_26_IMAGE
+    case TOGETHER_GPT_IMAGE_15
+    case TOGETHER_GROK_IMAGINE_PRO
+    case TOGETHER_QWEN_IMAGE_BASE
+    case TOGETHER_JUGGERNAUT_PRO_FLUX
+    case TOGETHER_JUGGERNAUT_LIGHTNING_FLUX
+    case TOGETHER_DREAMSHAPER
+
+    // MARK: Together AI Models - Video
+
+    case TOGETHER_MINIMAX_DIRECTOR
+    case TOGETHER_HAILUO_02
+    case TOGETHER_VEO_2
+    case TOGETHER_VEO_3
+    case TOGETHER_VEO_31
+    case TOGETHER_VEO_31_LITE
+    case TOGETHER_VEO_3_AUDIO
+    case TOGETHER_VEO_3_FAST
+    case TOGETHER_VEO_3_FAST_AUDIO
+    case TOGETHER_SEEDANCE_LITE
+    case TOGETHER_SEEDANCE_PRO
+    case TOGETHER_SEEDANCE_2
+    case TOGETHER_KLING_21_MASTER
+    case TOGETHER_KLING_21_PRO
+    case TOGETHER_KLING_21_STD
+    case TOGETHER_KLING_20_MASTER
+    case TOGETHER_KLING_16_PRO
+    case TOGETHER_KLING_16_STD
+    case TOGETHER_WAN_22_T2V
+    case TOGETHER_WAN_22_I2V
+    case TOGETHER_WAN_27_T2V
+    case TOGETHER_WAN_27_I2V
+    case TOGETHER_WAN_27_R2V
+    case TOGETHER_VIDU_20
+    case TOGETHER_VIDU_Q1
+    case TOGETHER_VIDU_Q3
+    case TOGETHER_VIDU_Q3_TURBO
+    case TOGETHER_PIXVERSE_V5
+    case TOGETHER_PIXVERSE_V56
+    case TOGETHER_PIXVERSE_V6
+    case TOGETHER_SORA_2
+    case TOGETHER_SORA_2_PRO
+    case TOGETHER_HAPPY_HORSE
+
+    // MARK: Luma AI Models - Image
+
+    case LUMA_PHOTON
+    case LUMA_PHOTON_FLASH
+    case LUMA_UNI_1
+    case LUMA_UNI_1_MAX
+
+    // MARK: Luma AI Models - Video
+
+    case LUMA_RAY_2
+    case LUMA_RAY_FLASH_2
+    case LUMA_RAY_2_I2V
+    case LUMA_RAY_FLASH_2_I2V
+    case LUMA_RAY_3_2
+    case LUMA_RAY_3_2_KEYFRAMES
+    case LUMA_RAY_3_2_EXTEND
+    case LUMA_RAY_3_2_EDIT
+    case LUMA_RAY_3_2_REFRAME
+
+    // MARK: Cloudflare Workers AI Models - Image
+
+    case CLOUDFLARE_FLUX_2_KLEIN_9B
+    case CLOUDFLARE_FLUX_2_KLEIN_4B
+    case CLOUDFLARE_FLUX_2_DEV
+    case CLOUDFLARE_LUCID_ORIGIN
+    case CLOUDFLARE_PHOENIX_1
+    case CLOUDFLARE_FLUX_1_SCHNELL
+    case CLOUDFLARE_SD_XL_BASE
+    case CLOUDFLARE_SD_15_IMG2IMG
+    case CLOUDFLARE_DREAMSHAPER_8_LCM
+
+    // MARK: Recraft Models - Image
+
+    case RECRAFT_V4_1
+    case RECRAFT_V4_1_PRO
+
+    // MARK: Ideogram Models - Image
+
+    case IDEOGRAM_V4_TURBO
+    case IDEOGRAM_V4_DEFAULT
+    case IDEOGRAM_V4_QUALITY
+
+    // MARK: Black Forest Labs Models - Image
+
+    case BFL_FLUX_2_PRO
+    case BFL_FLUX_2_MAX
+
+    // MARK: Bria Models - Image
+
+    case BRIA_FIBO
+
+    // MARK: Runway Models
+
+    case RUNWAY_GEN_4_IMAGE_TURBO
+    case RUNWAY_GEN_4_5
+    case RUNWAY_GEN_4_5_I2V
+
+    // MARK: LTX Models - Video
+
+    case LTX_2_3_FAST
+    case LTX_2_3_PRO
+
+    // MARK: Google Vertex AI Models - Image and Video
+
+    case VERTEX_GEMINI_3_1_FLASH_IMAGE
+    case VERTEX_VEO_3_1
+    case VERTEX_VEO_3_1_FAST
+
+    // MARK: Microsoft Azure AI Foundry Models - Image and Video
+
+    case AZURE_GPT_IMAGE_2
+    case AZURE_SORA_2
+
+    // MARK: Amazon Bedrock Models - Image
+
+    case BEDROCK_STABLE_IMAGE_ULTRA_1_1
+    case BEDROCK_STABLE_IMAGE_CORE_1_1
+
+    // MARK: Alibaba Cloud Model Studio - Wan 2.7
+
+    case ALIBABA_WAN_2_7_IMAGE_PRO
+    case ALIBABA_WAN_2_7_IMAGE
+    case ALIBABA_WAN_2_7_T2V
+    case ALIBABA_WAN_2_7_I2V
+
+    // MARK: MiniMax direct - Image 01 and Hailuo 2.3
+
+    case MINIMAX_IMAGE_01
+    case MINIMAX_HAILUO_2_3_T2V
+    case MINIMAX_HAILUO_2_3_I2V
+    case MINIMAX_HAILUO_2_3_FAST_I2V
+
+    // MARK: Kling AI direct - 3.0 classic and Omni image
+
+    case KLING_IMAGE_3_0
+    case KLING_IMAGE_3_0_OMNI
+    case KLING_VIDEO_3_0_T2V
+    case KLING_VIDEO_3_0_I2V
+
+    // MARK: xAI Models - Image and Video
+
+    case XAI_GROK_IMAGINE_IMAGE
+    case XAI_GROK_IMAGINE_IMAGE_QUALITY
+    case XAI_GROK_IMAGINE_VIDEO
+    case XAI_GROK_IMAGINE_VIDEO_1_5
+
+    // MARK: BytePlus ModelArk Models - Image and Video
+
+    case BYTEPLUS_DOLA_SEEDREAM_5_0_PRO
+    case BYTEPLUS_SEEDREAM_5_0_LITE
+    case BYTEPLUS_SEEDREAM_4_5
+    case BYTEPLUS_SEEDREAM_4_0
+    case BYTEPLUS_DREAMINA_SEEDANCE_2_0
+    case BYTEPLUS_DREAMINA_SEEDANCE_2_0_FAST
+    case BYTEPLUS_DREAMINA_SEEDANCE_2_0_MINI
+    case BYTEPLUS_SEEDANCE_1_5_PRO
+    case BYTEPLUS_SEEDANCE_1_0_PRO
+    case BYTEPLUS_SEEDANCE_1_0_PRO_FAST
+
+    // MARK: Vidu Models - Video
+
+    case VIDU_Q3_PRO
+    case VIDU_Q3_TURBO
+
+    // MARK: PixVerse Models - Video
+
+    case PIXVERSE_C1
+    case PIXVERSE_V6
+
+    // MARK: DeepInfra Models - Image
+
+    case DEEPINFRA_FLUX_2_KLEIN_4B
+    case DEEPINFRA_FLUX_2_KLEIN_9B
+
+    // MARK: Novita AI Models - Image
+
+    case NOVITA_QWEN_IMAGE
+
+    /// Generates a deterministic UUID from the model code for consistent identification.
+    public var modelId: UUID {
+        UUID.deterministicUUID(from: rawValue)
+    }
+}

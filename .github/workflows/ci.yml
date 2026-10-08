@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  builds:
+    name: SwiftUI Release (${{ matrix.target }})
+    runs-on: macos-26
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [build-macos, build-ios, build-ios-device]
+    steps:
+      - uses: actions/checkout@v4
+      - run: xcodebuild -version
+      - run: make ${{ matrix.target }}
+
+  tests:
+    name: Offline unit tests and formatting
+    runs-on: macos-26
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: xcodebuild -version
+      - run: make format-check
+      - run: make test
+      - run: make test-app
+
+  docs:
+    name: Mintlify documentation
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm run docs:check

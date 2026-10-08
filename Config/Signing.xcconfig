@@ -1,0 +1,5 @@
+// Official identities stay unchanged. Personal builds override these locally.
+ILLUSTRATE_BUNDLE_IDENTIFIER = so.illustrate
+ILLUSTRATE_DEVELOPMENT_TEAM = 6JTT6685LT
+ILLUSTRATE_ICLOUD_CONTAINER = iCloud.so.illustrate
+#include? "Signing.local.xcconfig"

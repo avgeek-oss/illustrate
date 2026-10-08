@@ -1,0 +1,488 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Bundle display name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Illustrate"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Illustrate"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate"
+          }
+        }
+      },
+      "shouldTranslate": false
+    },
+    "NSPhotoLibraryAddUsageDescription": {
+      "comment": "Privacy - Photo Library Additions Usage Description",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate benötigt Zugriff, um generierte Bilder und Videos in Ihrer Fotobibliothek zu speichern."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Illustrate needs access to save generated images and videos to your photo library."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate necesita acceso para guardar imágenes y vídeos generados en su biblioteca de fotos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate a besoin d'un accès pour enregistrer les images et les vidéos générées dans votre photothèque."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जेनरेट की गई छवियों और वीडियो को आपकी फोटो लाइब्रेरी में सहेजने के लिए इलस्ट्रेट को पहुंच की आवश्यकता है।"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate memerlukan akses untuk menyimpan gambar dan video yang dihasilkan ke perpustakaan foto Anda."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate では、生成された画像やビデオを写真ライブラリに保存するためにアクセスする必要があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate에서 생성된 이미지와 비디오를 사진 라이브러리에 저장하려면 액세스 권한이 필요합니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate potrzebuje dostępu, aby zapisywać wygenerowane obrazy i filmy w bibliotece zdjęć."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Illustrate precisa de acesso para salvar imagens e vídeos gerados em sua biblioteca de fotos."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oluşturulan görselleri ve videoları fotoğraf kitaplığınıza kaydetmek için Illustrate'ın erişime ihtiyacı var."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate потрібен доступ, щоб зберігати створені зображення та відео у вашій бібліотеці фотографій."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate cần quyền truy cập để lưu hình ảnh và video đã tạo vào thư viện ảnh của bạn."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate 需要访问权限才能将生成的图像和视频保存到您的照片库。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate 需要存取權限才能將產生的圖像和影片儲存到您的照片庫。"
+          }
+        }
+      }
+    },
+    "NSPhotoLibraryUsageDescription": {
+      "comment": "Privacy - Photo Library Usage Description",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate benötigt Zugriff auf Ihre Fotobibliothek, um Bilder zur Bearbeitung und Generierung auszuwählen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Illustrate needs access to your photo library to select images for editing and generation."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate necesita acceso a su biblioteca de fotografías para seleccionar imágenes para editarlas y generarlas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate a besoin d’accéder à votre photothèque pour sélectionner des images à éditer et à générer."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "संपादन और निर्माण के लिए छवियों का चयन करने के लिए इलस्ट्रेट को आपकी फोटो लाइब्रेरी तक पहुंच की आवश्यकता है।"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate memerlukan akses ke perpustakaan foto Anda untuk memilih gambar yang akan diedit dan dibuat."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate では、編集および生成する画像を選択するためにフォト ライブラリにアクセスする必要があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate에서 편집 및 생성할 이미지를 선택하려면 사진 라이브러리에 액세스할 수 있어야 합니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate potrzebuje dostępu do biblioteki zdjęć, aby wybierać obrazy do edycji i generowania."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Illustrate precisa de acesso à sua biblioteca de fotos para selecionar imagens para edição e geração."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate'ın düzenleme ve oluşturma amacıyla görsel seçebilmesi için fotoğraf kitaplığınıza erişmesi gerekiyor."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate потрібен доступ до вашої бібліотеки фотографій, щоб вибрати зображення для редагування та створення."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate cần quyền truy cập vào thư viện ảnh của bạn để chọn hình ảnh cần chỉnh sửa và tạo."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate 需要访问您的照片库来选择图像进行编辑和生成。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Illustrate 需要存取您的照片庫來選擇影像進行編輯和產生。"
+          }
+        }
+      }
+    },
+    "NSUserTrackingUsageDescription": {
+      "comment": "Privacy - Tracking Usage Description",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wir bitten um Tracking-Erlaubnis, um Ihr Erlebnis bei der Nutzung von Anbietern zu verbessern. Dadurch können wir Ihre Identität bei diesen Anbietern sicher verwalten."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "We request tracking permission to enhance your experience when using providers. This allows us to securely manage your identity with these providers."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solicitamos permiso de seguimiento para mejorar su experiencia al utilizar proveedores. Esto nos permite gestionar de forma segura su identidad con estos proveedores."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nous demandons une autorisation de suivi pour améliorer votre expérience lorsque vous utilisez des fournisseurs. Cela nous permet de gérer en toute sécurité votre identité auprès de ces fournisseurs."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हम प्रदाताओं का उपयोग करते समय आपके अनुभव को बढ़ाने के लिए ट्रैकिंग अनुमति का अनुरोध करते हैं। यह हमें इन प्रदाताओं के साथ आपकी पहचान को सुरक्षित रूप से प्रबंधित करने की अनुमति देता है।"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kami meminta izin pelacakan untuk meningkatkan pengalaman Anda saat menggunakan penyedia. Hal ini memungkinkan kami mengelola identitas Anda secara aman dengan penyedia ini."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "プロバイダーを使用する際のエクスペリエンスを向上させるために、追跡許可をリクエストします。これにより、これらのプロバイダーでお客様の ID を安全に管理できるようになります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공급자 이용 시 귀하의 경험을 향상시키기 위해 추적 권한을 요청합니다. 이를 통해 당사는 이러한 제공업체를 통해 귀하의 신원을 안전하게 관리할 수 있습니다."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prosimy o pozwolenie na śledzenie, aby poprawić Twoje doświadczenia podczas korzystania z dostawców. Dzięki temu możemy bezpiecznie zarządzać Twoją tożsamością u tych dostawców."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solicitamos permissão de rastreamento para melhorar sua experiência ao usar provedores. Isso nos permite gerenciar com segurança sua identidade com esses provedores."
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sağlayıcıları kullanırken deneyiminizi geliştirmek için izleme izni talep ediyoruz. Bu, kimliğinizi bu sağlayıcılarla güvenli bir şekilde yönetmemize olanak tanır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ми просимо дозволу на відстеження, щоб покращити ваш досвід використання постачальників. Це дозволяє нам безпечно керувати вашою ідентифікацією за допомогою цих постачальників."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chúng tôi yêu cầu quyền theo dõi để nâng cao trải nghiệm của bạn khi sử dụng nhà cung cấp. Điều này cho phép chúng tôi quản lý danh tính của bạn một cách an toàn với các nhà cung cấp này."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我们请求跟踪许可，以增强您使用提供商时的体验。这使我们能够安全地管理您在这些提供商处的身份。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "我們請求追蹤許可，以增強您使用提供者時的體驗。這使我們能夠安全地管理您在這些提供者處的身份。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.2"
+}
