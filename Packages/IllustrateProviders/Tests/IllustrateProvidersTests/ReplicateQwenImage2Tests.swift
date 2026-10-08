@@ -64,35 +64,41 @@ struct ReplicateQwenImage2Tests {
 
     @Test("Qwen Image 2 parses data URI output")
     func parsesDataURIOutput() throws {
-        configureReplicate(ReplicateQwenImage2MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateQwenImage2MockNetworkProvider(),
+            modelProvider: ReplicateQwenImage2TestModelProvider()
+        ) {
+            let response = try G_REPLICATE_QWEN_IMAGE_2_PRO().transformResponse(
+                request: imageRequest(numberOfImages: 2),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": ["data:image/png;base64,aW1hZ2U="],
+                ])
+            )
 
-        let response = try G_REPLICATE_QWEN_IMAGE_2_PRO().transformResponse(
-            request: imageRequest(numberOfImages: 2),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": ["data:image/png;base64,aW1hZ2U="],
-            ])
-        )
-
-        #expect(response.status == .GENERATED)
-        #expect(response.base64 == "aW1hZ2U=")
-        #expect(abs((response.cost ?? 0) - 0.15) < 0.0001)
+            #expect(response.status == .GENERATED)
+            #expect(response.base64 == "aW1hZ2U=")
+            #expect(abs((response.cost ?? 0) - 0.15) < 0.0001)
+        }
     }
 
     @Test("Failed prediction maps provider error")
     func failedPredictionMapsError() throws {
-        configureReplicate(ReplicateQwenImage2MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateQwenImage2MockNetworkProvider(),
+            modelProvider: ReplicateQwenImage2TestModelProvider()
+        ) {
+            let response = try G_REPLICATE_QWEN_IMAGE_2().transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "failed",
+                    "error": "quota exceeded",
+                ])
+            )
 
-        let response = try G_REPLICATE_QWEN_IMAGE_2().transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "failed",
-                "error": "quota exceeded",
-            ])
-        )
-
-        #expect(response.status == .FAILED)
-        #expect(response.errorMessage == "quota exceeded")
+            #expect(response.status == .FAILED)
+            #expect(response.errorMessage == "quota exceeded")
+        }
     }
 
     @Test("Model metadata registers endpoints and documented schema capabilities")
@@ -114,13 +120,6 @@ struct ReplicateQwenImage2Tests {
         #expect(pro.modelGenerateBaseURL == "https://api.replicate.com/v1/models/qwen/qwen-image-2-pro/predictions")
         #expect(pro.modelAPIDocumentationURL == "https://replicate.com/qwen/qwen-image-2-pro")
         #expect(pro.modelParams.supportedDimensions.contains("1:2"))
-    }
-
-    private func configureReplicate(_ mock: ReplicateQwenImage2MockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: ReplicateQwenImage2TestModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: ReplicateQwenImage2MockNetworkProvider) throws -> [String: Any] {

@@ -256,13 +256,6 @@ struct FalSimpleImageEndpointTests {
         #expect(!seedreamProEdit.modelParams.supportsSeed)
     }
 
-    private func configureFal(_ mock: FalImageMockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: FalImageTestModelProvider()
-        )
-    }
-
     private func capturedJSON(_ mock: FalImageMockNetworkProvider) throws -> [String: Any] {
         let data = try #require(mock.capturedBodyData)
         return try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])

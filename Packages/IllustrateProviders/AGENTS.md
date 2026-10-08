@@ -20,6 +20,8 @@ Update offline tests for request fields, errors, polling, cancellation, and
 pricing calculations. Never use live credentials or paid requests in tests.
 Run swift test --package-path Packages/IllustrateProviders from the repo root,
 then the app unit tests if model factory wiring changed.
+Use withProviderDependencies for both synchronous and asynchronous tests;
+never replace process-wide dependencies with configure in a test suite.
 
 Model descriptions are one sentence of 6-9 words describing the creative job.
 Keep pricing, quotas, dates, and release claims in metadata and documentation,

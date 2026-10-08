@@ -161,23 +161,26 @@ struct Replicate2026VideoRefreshTests {
 
     @Test("Data URI video output is parsed and image-anchored Luma cost uses posted 5 second duration")
     func parsesDataURIOutput() throws {
-        configureReplicate(Replicate2026VideoMockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: Replicate2026VideoMockNetworkProvider(),
+            modelProvider: Replicate2026VideoTestModelProvider()
+        ) {
+            let response = try G_REPLICATE_LUMA_RAY_3_2().transformResponse(
+                request: videoRequest(
+                    durationSeconds: 10,
+                    resolution: "1080p",
+                    clientImage: "placeholder"
+                ),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": "data:video/mp4;base64,dmlkZW8=",
+                ])
+            )
 
-        let response = try G_REPLICATE_LUMA_RAY_3_2().transformResponse(
-            request: videoRequest(
-                durationSeconds: 10,
-                resolution: "1080p",
-                clientImage: "placeholder"
-            ),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": "data:video/mp4;base64,dmlkZW8=",
-            ])
-        )
-
-        #expect(response.status == .GENERATED)
-        #expect(response.base64 == "dmlkZW8=")
-        #expect(abs((response.cost ?? 0) - 1.20) < 0.0001)
+            #expect(response.status == .GENERATED)
+            #expect(response.base64 == "dmlkZW8=")
+            #expect(abs((response.cost ?? 0) - 1.20) < 0.0001)
+        }
     }
 
     @Test("Model metadata registers endpoints and official schema capabilities")
@@ -209,13 +212,6 @@ struct Replicate2026VideoRefreshTests {
         #expect(vidu.modelParams.maxPromptLength == 5000)
         #expect(vidu.modelParams.supportedVideoDurations.contains(16))
         #expect(vidu.modelParams.supportsAudio)
-    }
-
-    private func configureReplicate(_ mock: Replicate2026VideoMockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: Replicate2026VideoTestModelProvider()
-        )
     }
 
     private func capturedInput(_ mock: Replicate2026VideoMockNetworkProvider) throws -> [String: Any] {

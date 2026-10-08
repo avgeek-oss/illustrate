@@ -62,73 +62,85 @@ struct OpenAISoraTests {
 
     @Test("Sora generation request preserves supported create-video values")
     func soraRequestPreservesSupportedValues() {
-        configureProviderDependencies()
-
-        let adapter = G_OPENAI_SORA_2()
-        let serviceRequest = adapter.transformRequest(
-            request: videoRequest(
-                dimensions: "720x1280",
-                durationSeconds: 8
+        withProviderDependencies(
+            networkProvider: OpenAISoraMockNetworkProvider(),
+            modelProvider: OpenAISoraModelProvider()
+        ) {
+            let adapter = G_OPENAI_SORA_2()
+            let serviceRequest = adapter.transformRequest(
+                request: videoRequest(
+                    dimensions: "720x1280",
+                    durationSeconds: 8
+                )
             )
-        )
 
-        #expect(serviceRequest.model == "sora-2")
-        #expect(serviceRequest.prompt == "Create a clean cinematic runway shot.")
-        #expect(serviceRequest.seconds == 8)
-        #expect(serviceRequest.size == "720x1280")
+            #expect(serviceRequest.model == "sora-2")
+            #expect(serviceRequest.prompt == "Create a clean cinematic runway shot.")
+            #expect(serviceRequest.seconds == 8)
+            #expect(serviceRequest.size == "720x1280")
+        }
     }
 
     @Test("Sora generation request clamps guide-only values to the create-video enum")
     func soraRequestClampsUnexposedGuideOnlyValues() {
-        configureProviderDependencies()
-
-        let adapter = G_OPENAI_SORA_2_PRO()
-        let serviceRequest = adapter.transformRequest(
-            request: videoRequest(
-                dimensions: "1920x1080",
-                durationSeconds: 20
+        withProviderDependencies(
+            networkProvider: OpenAISoraMockNetworkProvider(),
+            modelProvider: OpenAISoraModelProvider()
+        ) {
+            let adapter = G_OPENAI_SORA_2_PRO()
+            let serviceRequest = adapter.transformRequest(
+                request: videoRequest(
+                    dimensions: "1920x1080",
+                    durationSeconds: 20
+                )
             )
-        )
 
-        #expect(serviceRequest.model == "sora-2-pro")
-        #expect(serviceRequest.seconds == 12)
-        #expect(serviceRequest.size == "1280x720")
+            #expect(serviceRequest.model == "sora-2-pro")
+            #expect(serviceRequest.seconds == 12)
+            #expect(serviceRequest.size == "1280x720")
+        }
     }
 
     @Test("Sora generation cost request uses clamped create-video values")
     func soraCostRequestUsesClampedCreateVideoValues() {
-        configureProviderDependencies()
+        withProviderDependencies(
+            networkProvider: OpenAISoraMockNetworkProvider(),
+            modelProvider: OpenAISoraModelProvider()
+        ) {
+            let adapter = G_OPENAI_SORA_2_PRO()
+            let request = videoRequest(
+                dimensions: "1920x1080",
+                durationSeconds: 20
+            )
+            let serviceRequest = adapter.transformRequest(request: request)
+            let costRequest = adapter.transformCostRequest(request: request, serviceRequest: serviceRequest)
 
-        let adapter = G_OPENAI_SORA_2_PRO()
-        let request = videoRequest(
-            dimensions: "1920x1080",
-            durationSeconds: 20
-        )
-        let serviceRequest = adapter.transformRequest(request: request)
-        let costRequest = adapter.transformCostRequest(request: request, serviceRequest: serviceRequest)
-
-        #expect(costRequest.dimensions == "1280x720")
-        #expect(costRequest.durationSeconds == 12)
-        #expect(abs(adapter.getCostEstimate(request: costRequest) - 3.60) < 0.0001)
+            #expect(costRequest.dimensions == "1280x720")
+            #expect(costRequest.durationSeconds == 12)
+            #expect(abs(adapter.getCostEstimate(request: costRequest) - 3.60) < 0.0001)
+        }
     }
 
     @Test("Sora extension request preserves official extension fields")
     func soraExtensionRequestPreservesOfficialFields() {
-        configureProviderDependencies()
+        withProviderDependencies(
+            networkProvider: OpenAISoraMockNetworkProvider(),
+            modelProvider: OpenAISoraModelProvider()
+        ) {
+            let adapter = G_OPENAI_SORA_2_REMIX()
+            let serviceRequest = adapter.transformExtensionRequest(
+                request: videoRequest(
+                    dimensions: "1280x720",
+                    durationSeconds: 20,
+                    sourceMetadata: [G_OPENAI_SORA_BASE.soraVideoIdKey: "video_123"]
+                ),
+                soraVideoId: "video_123"
+            )
 
-        let adapter = G_OPENAI_SORA_2_REMIX()
-        let serviceRequest = adapter.transformExtensionRequest(
-            request: videoRequest(
-                dimensions: "1280x720",
-                durationSeconds: 20,
-                sourceMetadata: [G_OPENAI_SORA_BASE.soraVideoIdKey: "video_123"]
-            ),
-            soraVideoId: "video_123"
-        )
-
-        #expect(serviceRequest.video.id == "video_123")
-        #expect(serviceRequest.prompt == "Create a clean cinematic runway shot.")
-        #expect(serviceRequest.seconds == "20")
+            #expect(serviceRequest.video.id == "video_123")
+            #expect(serviceRequest.prompt == "Create a clean cinematic runway shot.")
+            #expect(serviceRequest.seconds == "20")
+        }
     }
 
     @Test("Sora extension posts official extension endpoint payload")
@@ -209,15 +221,6 @@ struct OpenAISoraTests {
         #expect(abs(adapter
                 .getCostEstimate(request: costRequest(dimensions: "1920x1080", durationSeconds: 20)) - 14.00) <
             0.0001)
-    }
-
-    private func configureProviderDependencies(_ mock: OpenAISoraMockNetworkProvider =
-        OpenAISoraMockNetworkProvider())
-    {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: OpenAISoraModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: OpenAISoraMockNetworkProvider) throws -> [String: Any] {

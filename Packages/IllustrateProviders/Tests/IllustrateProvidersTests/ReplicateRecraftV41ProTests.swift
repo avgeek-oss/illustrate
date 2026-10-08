@@ -57,36 +57,42 @@ struct ReplicateRecraftV41ProTests {
 
     @Test("Parses data URI output")
     func parsesDataURIOutput() throws {
-        configureReplicate(ReplicateRecraftV41ProMockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateRecraftV41ProMockNetworkProvider(),
+            modelProvider: ReplicateRecraftV41ProTestModelProvider()
+        ) {
+            let adapter = G_REPLICATE_RECRAFT_V4_1_PRO()
+            let response = try adapter.transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": "data:image/webp;base64,aW1hZ2U=",
+                ])
+            )
 
-        let adapter = G_REPLICATE_RECRAFT_V4_1_PRO()
-        let response = try adapter.transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": "data:image/webp;base64,aW1hZ2U=",
-            ])
-        )
-
-        #expect(response.status == .GENERATED)
-        #expect(response.base64 == "aW1hZ2U=")
-        #expect(abs((response.cost ?? 0) - 0.25) < 0.0001)
+            #expect(response.status == .GENERATED)
+            #expect(response.base64 == "aW1hZ2U=")
+            #expect(abs((response.cost ?? 0) - 0.25) < 0.0001)
+        }
     }
 
     @Test("Failed prediction maps provider error")
     func failedPredictionMapsProviderError() throws {
-        configureReplicate(ReplicateRecraftV41ProMockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateRecraftV41ProMockNetworkProvider(),
+            modelProvider: ReplicateRecraftV41ProTestModelProvider()
+        ) {
+            let response = try G_REPLICATE_RECRAFT_V4_1_PRO().transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "failed",
+                    "error": "quota exceeded",
+                ])
+            )
 
-        let response = try G_REPLICATE_RECRAFT_V4_1_PRO().transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "failed",
-                "error": "quota exceeded",
-            ])
-        )
-
-        #expect(response.status == .FAILED)
-        #expect(response.errorMessage == "quota exceeded")
+            #expect(response.status == .FAILED)
+            #expect(response.errorMessage == "quota exceeded")
+        }
     }
 
     @Test("Network failures map to failed response")
@@ -118,13 +124,6 @@ struct ReplicateRecraftV41ProTests {
         #expect(!model.modelParams.supportsSeed)
         #expect(model.modelParams.supportedDimensions.contains("10:14"))
         #expect(model.modelParams.supportedDimensions.contains("3072x1536"))
-    }
-
-    private func configureReplicate(_ mock: ReplicateRecraftV41ProMockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: ReplicateRecraftV41ProTestModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: ReplicateRecraftV41ProMockNetworkProvider) throws -> [String: Any] {

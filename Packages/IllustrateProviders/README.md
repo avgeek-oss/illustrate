@@ -13,6 +13,8 @@ swift test --package-path Packages/IllustrateProviders
 interface. `ProviderDependencies` supplies the network and model catalogue;
 its task-local overrides keep concurrent tests isolated. Adapters must use
 the injected `NetworkProvider`, not create their own network sessions.
+Use `withProviderDependencies` in synchronous tests too. Calling the global
+`configure` method from a test can replace another suite's model catalogue.
 
 Use `performSingleAttemptRequest` for non-idempotent, paid submissions.
 Retries belong on safe status reads, not generation creation. Preserve response

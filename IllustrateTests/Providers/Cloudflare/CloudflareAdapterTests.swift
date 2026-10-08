@@ -87,20 +87,20 @@ final class CloudflareAdapterTests: XCTestCase {
 
     func testMakeRequest_kleinMultipartReferenceImagesUseDocumentedNames() async throws {
         let mock = CloudflareMockNetworkProvider()
-        ProviderDependencies.shared.configure(
+        let response = try await ProviderDependencies.shared.withDependencies(
             networkProvider: mock,
             modelProvider: CloudflareTestModelProvider()
-        )
-
-        let response = try await G_CLOUDFLARE_FLUX_2_KLEIN_4B().makeRequest(request: makeRequest(
-            clientImage: "data:image/jpeg;base64,c291cmNl",
-            referenceImages: [
-                ReferenceImageData(base64Image: "cmVmMA==", mimeType: "image/png"),
-                ReferenceImageData(base64Image: "cmVmMQ==", mimeType: "image/webp"),
-                ReferenceImageData(base64Image: "cmVmMg==", mimeType: "image/png"),
-                ReferenceImageData(base64Image: "cmVmMw==", mimeType: "image/png"),
-            ]
-        ))
+        ) {
+            try await G_CLOUDFLARE_FLUX_2_KLEIN_4B().makeRequest(request: makeRequest(
+                clientImage: "data:image/jpeg;base64,c291cmNl",
+                referenceImages: [
+                    ReferenceImageData(base64Image: "cmVmMA==", mimeType: "image/png"),
+                    ReferenceImageData(base64Image: "cmVmMQ==", mimeType: "image/webp"),
+                    ReferenceImageData(base64Image: "cmVmMg==", mimeType: "image/png"),
+                    ReferenceImageData(base64Image: "cmVmMw==", mimeType: "image/png"),
+                ]
+            ))
+        }
 
         XCTAssertEqual(response.status, .GENERATED)
         XCTAssertEqual(

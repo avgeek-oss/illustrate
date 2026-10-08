@@ -50,37 +50,43 @@ struct ReplicateIdeogramV4Tests {
 
     @Test("Quality parses data URI output")
     func qualityParsesDataURIOutput() throws {
-        configureReplicate(ReplicateIdeogramV4MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateIdeogramV4MockNetworkProvider(),
+            modelProvider: ReplicateIdeogramV4TestModelProvider()
+        ) {
+            let adapter = G_REPLICATE_IDEOGRAM_V4_QUALITY()
+            let response = try adapter.transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": "data:image/png;base64,aW1hZ2U=",
+                ])
+            )
 
-        let adapter = G_REPLICATE_IDEOGRAM_V4_QUALITY()
-        let response = try adapter.transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": "data:image/png;base64,aW1hZ2U=",
-            ])
-        )
-
-        #expect(response.status == .GENERATED)
-        #expect(response.base64 == "aW1hZ2U=")
-        #expect(abs((response.cost ?? 0) - 0.10) < 0.0001)
+            #expect(response.status == .GENERATED)
+            #expect(response.base64 == "aW1hZ2U=")
+            #expect(abs((response.cost ?? 0) - 0.10) < 0.0001)
+        }
     }
 
     @Test("Failed prediction maps provider error")
     func failedPredictionMapsError() throws {
-        configureReplicate(ReplicateIdeogramV4MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateIdeogramV4MockNetworkProvider(),
+            modelProvider: ReplicateIdeogramV4TestModelProvider()
+        ) {
+            let adapter = G_REPLICATE_IDEOGRAM_V4_TURBO()
+            let response = try adapter.transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "failed",
+                    "error": "quota exceeded",
+                ])
+            )
 
-        let adapter = G_REPLICATE_IDEOGRAM_V4_TURBO()
-        let response = try adapter.transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "failed",
-                "error": "quota exceeded",
-            ])
-        )
-
-        #expect(response.status == .FAILED)
-        #expect(response.errorMessage == "quota exceeded")
+            #expect(response.status == .FAILED)
+            #expect(response.errorMessage == "quota exceeded")
+        }
     }
 
     @Test("Model metadata registers endpoints and documented dimensions")
@@ -102,13 +108,6 @@ struct ReplicateIdeogramV4Tests {
         let quality = try #require(models.first { $0.modelCode == .REPLICATE_IDEOGRAM_V4_QUALITY })
         #expect(quality
             .modelGenerateBaseURL == "https://api.replicate.com/v1/models/ideogram-ai/ideogram-v4-quality/predictions")
-    }
-
-    private func configureReplicate(_ mock: ReplicateIdeogramV4MockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: ReplicateIdeogramV4TestModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: ReplicateIdeogramV4MockNetworkProvider) throws -> [String: Any] {

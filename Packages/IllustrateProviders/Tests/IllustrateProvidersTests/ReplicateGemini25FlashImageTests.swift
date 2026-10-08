@@ -58,35 +58,41 @@ struct ReplicateGemini25FlashImageTests {
 
     @Test("Parses string and array URL outputs")
     func parsesURLOutputs() throws {
-        configureReplicate(ReplicateGemini25FlashImageMockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateGemini25FlashImageMockNetworkProvider(),
+            modelProvider: ReplicateGemini25FlashImageTestModelProvider()
+        ) {
+            let dataURIResponse = try G_REPLICATE_GOOGLE_GEMINI_2_5_FLASH_IMAGE().transformResponse(
+                request: imageRequest(numberOfImages: 2),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": ["data:image/png;base64,aW1hZ2U="],
+                ])
+            )
 
-        let dataURIResponse = try G_REPLICATE_GOOGLE_GEMINI_2_5_FLASH_IMAGE().transformResponse(
-            request: imageRequest(numberOfImages: 2),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": ["data:image/png;base64,aW1hZ2U="],
-            ])
-        )
-
-        #expect(dataURIResponse.status == .GENERATED)
-        #expect(dataURIResponse.base64 == "aW1hZ2U=")
-        #expect(abs((dataURIResponse.cost ?? 0) - 0.078) < 0.0001)
+            #expect(dataURIResponse.status == .GENERATED)
+            #expect(dataURIResponse.base64 == "aW1hZ2U=")
+            #expect(abs((dataURIResponse.cost ?? 0) - 0.078) < 0.0001)
+        }
     }
 
     @Test("Failed prediction maps provider error")
     func failedPredictionMapsError() throws {
-        configureReplicate(ReplicateGemini25FlashImageMockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateGemini25FlashImageMockNetworkProvider(),
+            modelProvider: ReplicateGemini25FlashImageTestModelProvider()
+        ) {
+            let response = try G_REPLICATE_GOOGLE_GEMINI_2_5_FLASH_IMAGE().transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "failed",
+                    "error": "quota exceeded",
+                ])
+            )
 
-        let response = try G_REPLICATE_GOOGLE_GEMINI_2_5_FLASH_IMAGE().transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "failed",
-                "error": "quota exceeded",
-            ])
-        )
-
-        #expect(response.status == .FAILED)
-        #expect(response.errorMessage == "quota exceeded")
+            #expect(response.status == .FAILED)
+            #expect(response.errorMessage == "quota exceeded")
+        }
     }
 
     @Test("Model metadata registers documented endpoint and capabilities")
@@ -105,13 +111,6 @@ struct ReplicateGemini25FlashImageTests {
         #expect(model.modelParams.supportedDimensions.contains("match_input_image"))
         #expect(model.modelParams.supportedDimensions.contains("21:9"))
         #expect(model.modelParams.supportsSourceImage)
-    }
-
-    private func configureReplicate(_ mock: ReplicateGemini25FlashImageMockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: ReplicateGemini25FlashImageTestModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: ReplicateGemini25FlashImageMockNetworkProvider) throws -> [String: Any] {

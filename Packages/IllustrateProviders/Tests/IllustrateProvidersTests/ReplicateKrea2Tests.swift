@@ -51,37 +51,43 @@ struct ReplicateKrea2Tests {
 
     @Test("Large parses data URI output")
     func largeParsesDataURIOutput() throws {
-        configureReplicate(ReplicateKrea2MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateKrea2MockNetworkProvider(),
+            modelProvider: ReplicateKrea2TestModelProvider()
+        ) {
+            let adapter = G_REPLICATE_KREA_2_LARGE()
+            let response = try adapter.transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "succeeded",
+                    "output": "data:image/png;base64,aW1hZ2U=",
+                ])
+            )
 
-        let adapter = G_REPLICATE_KREA_2_LARGE()
-        let response = try adapter.transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "succeeded",
-                "output": "data:image/png;base64,aW1hZ2U=",
-            ])
-        )
-
-        #expect(response.status == .GENERATED)
-        #expect(response.base64 == "aW1hZ2U=")
-        #expect(abs((response.cost ?? 0) - 0.06) < 0.0001)
+            #expect(response.status == .GENERATED)
+            #expect(response.base64 == "aW1hZ2U=")
+            #expect(abs((response.cost ?? 0) - 0.06) < 0.0001)
+        }
     }
 
     @Test("Failed prediction maps provider error")
     func failedPredictionMapsError() throws {
-        configureReplicate(ReplicateKrea2MockNetworkProvider())
+        try withProviderDependencies(
+            networkProvider: ReplicateKrea2MockNetworkProvider(),
+            modelProvider: ReplicateKrea2TestModelProvider()
+        ) {
+            let adapter = G_REPLICATE_KREA_2_MEDIUM()
+            let response = try adapter.transformResponse(
+                request: imageRequest(),
+                response: .dictionary(statusCode: 200, data: [
+                    "status": "failed",
+                    "error": "quota exceeded",
+                ])
+            )
 
-        let adapter = G_REPLICATE_KREA_2_MEDIUM()
-        let response = try adapter.transformResponse(
-            request: imageRequest(),
-            response: .dictionary(statusCode: 200, data: [
-                "status": "failed",
-                "error": "quota exceeded",
-            ])
-        )
-
-        #expect(response.status == .FAILED)
-        #expect(response.errorMessage == "quota exceeded")
+            #expect(response.status == .FAILED)
+            #expect(response.errorMessage == "quota exceeded")
+        }
     }
 
     @Test("Network failures map to failed response")
@@ -114,13 +120,6 @@ struct ReplicateKrea2Tests {
         #expect(large.modelGenerateBaseURL == "https://api.replicate.com/v1/models/krea/krea-2-large/predictions")
         #expect(large.modelAPIDocumentationURL == "https://replicate.com/krea/krea-2-large")
         #expect(large.modelParams.supportedDimensions.contains("16:9"))
-    }
-
-    private func configureReplicate(_ mock: ReplicateKrea2MockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: ReplicateKrea2TestModelProvider()
-        )
     }
 
     private func capturedJSON(_ mock: ReplicateKrea2MockNetworkProvider) throws -> [String: Any] {

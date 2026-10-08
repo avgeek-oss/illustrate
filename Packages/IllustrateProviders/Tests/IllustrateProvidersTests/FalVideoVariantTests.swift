@@ -688,13 +688,6 @@ struct FalVideoVariantTests {
         #expect(ref2v.modelParams.supportsAudio == false)
     }
 
-    private func configureFal(_ mock: FalMockNetworkProvider) {
-        ProviderDependencies.shared.configure(
-            networkProvider: mock,
-            modelProvider: FalTestModelProvider()
-        )
-    }
-
     private func withFalDependencies<Result>(
         _ mock: FalMockNetworkProvider,
         operation: () async throws -> Result
