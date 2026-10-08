@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IllustrateDevelopmentTeam</key>
+	<string>$(ILLUSTRATE_DEVELOPMENT_TEAM)</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>We request tracking permission to enhance your experience when using providers. This allows us to securely manage your identity with these providers.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Illustrate needs access to your photo library to select images for editing and generation.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Illustrate needs access to save generated images and videos to your photo library.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>NSUbiquitousContainers</key>
+	<dict>
+		<key>$(ILLUSTRATE_ICLOUD_CONTAINER)</key>
+		<dict>
+			<key>NSUbiquitousContainerSupportedFolderLevels</key>
+			<string>Any</string>
+			<key>NSUbiquitousContainerName</key>
+			<string>Illustrate</string>
+			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,30 @@
+---
+title: "Illustrate"
+description: "A native workspace for creating AI images and videos with your own provider accounts."
+mode: "custom"
+---
+
+import { Home, Hero, Actions, ActionLink, SplitSection, SectionIntro, Points, InlineLink } from "/snippets/oss/homepage.jsx";
+
+<Home>
+  <Hero id="illustrate-heading">
+    <h1 id="illustrate-heading">Create with your own AI providers.</h1>
+    <p>Generate images and videos, keep your prompts, and organize each project in a native app for iPhone, iPad, and Mac.</p>
+    <Actions>
+      <ActionLink href="/docs/build-from-source">Build your own copy →</ActionLink>
+      <ActionLink href="/docs/introduction" variant="secondary">Explore the app</ActionLink>
+    </Actions>
+  </Hero>
+  <SplitSection id="workspace-heading">
+    <SectionIntro>
+      <h2 id="workspace-heading">A workspace for the whole project.</h2>
+      <p>Bring your provider credentials. Illustrate connects directly to their APIs, without an Illustrate server to deploy.</p>
+      <InlineLink href="/docs/getting-started">Start with one provider →</InlineLink>
+    </SectionIntro>
+    <Points>
+      <div><h3>Choose the workflow</h3><p>Start with a single image or video. Use chat threads, bulk sessions, storyboards, or a canvas when the work calls for them.</p></div>
+      <div><h3>Keep work together</h3><p>Projects group provider connections, saved prompts, and generated media. The native app uses SwiftData and supports private iCloud synchronization.</p></div>
+      <div><h3>Inspect and build</h3><p>The SwiftUI app and Swift provider code are open source. Build your own copy with Xcode. A paid App Store build is planned for people who prefer a ready-to-install app.</p></div>
+    </Points>
+  </SplitSection>
+</Home>

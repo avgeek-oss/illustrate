@@ -1,0 +1,37 @@
+---
+title: "Providers"
+description: "Provider accounts, credentials, and the bundled model catalogue."
+---
+
+The Swift catalogue contains 27 providers:
+
+Google AI, OpenAI, Stability AI, Replicate, Fal AI, Firecrawl, Together AI,
+Luma AI, Cloudflare Workers AI, Recraft, Ideogram, Black Forest Labs, Bria,
+Runway, LTX, Google Vertex AI, Azure AI Foundry, Amazon Bedrock, Alibaba
+Model Studio, MiniMax, Kling AI, xAI, BytePlus ModelArk, Vidu, PixVerse,
+DeepInfra, and Novita AI.
+
+Not every provider supports the same operations. Firecrawl supports website
+data extraction used by brand workflows; it is not an image generation service.
+Some providers need an API key; others require an account ID, region, endpoint,
+or service-account configuration. Follow the fields in the app.
+
+## Availability and cost
+
+The catalogue is bundled with the app. It can include retired or inactive models;
+your provider decides which models your account can use. Check its current
+documentation and billing before submitting a request. Displayed cost estimates
+are not a price guarantee.
+
+## Credentials
+
+Use the narrowest available API permissions. Keep credentials out of screenshots,
+logs, repository files, and issue reports. Revoke exposed or unused credentials
+through the provider's console.
+
+## Inspect the implementation
+
+Adapters, request types, and model definitions live in
+[`Packages/IllustrateProviders`](https://github.com/avgeek-oss/illustrate/tree/main/Packages/IllustrateProviders).
+Offline tests check request construction, response handling, pricing calculations,
+and shared provider behavior. They do not prove that a live account or model works.

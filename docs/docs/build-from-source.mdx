@@ -1,0 +1,64 @@
+---
+title: "Build your own copy"
+description: "Build the SwiftUI app with Xcode and configure your own signing identities."
+---
+
+## Requirements
+
+- A Mac with Xcode 26 or newer selected through `xcode-select`.
+- The iOS platform installed in Xcode for iOS builds.
+- iOS 18.6 or later, or macOS 15.6 or later, to run the app.
+- Internet access to download public Swift packages on the first build.
+
+## Clone and compile
+
+```sh
+git clone https://github.com/avgeek-oss/illustrate.git
+cd illustrate
+make build-macos
+make build-ios
+make build-ios-device
+```
+
+Unsigned Release builds appear under `build/Apple/Build/Products/`.
+They verify compilation; they are not App Store archives or distributable
+signed apps. Rust, React Native, and a backend server are not required.
+
+## Configure signing
+
+```sh
+cp Config/Signing.local.xcconfig.example Config/Signing.local.xcconfig
+open Illustrate.xcodeproj
+```
+
+Edit the local file with your Apple Developer team, a unique bundle identifier,
+and an iCloud container you own. Configure CloudKit, iCloud Documents, push
+notifications, and Keychain Sharing for that app in your developer account.
+These capabilities may require paid Apple Developer membership.
+
+Choose the **Illustrate** scheme and your Mac or iOS device, then run from Xcode.
+The local configuration is ignored by Git. Do not change the committed official
+identifiers to build a personal copy. Changing identifiers creates a separate
+app identity; it does not migrate the official app's local or iCloud data.
+
+## Run checks
+
+```sh
+make test
+make test-app
+make format-check
+```
+
+These are offline unit tests. Provider transports are replaced with fixtures;
+hosted app tests use a separate bundle identity and in-memory SwiftData stores.
+No real API keys or paid generation requests are required.
+
+For the documentation preview only, use Node.js 24 or newer:
+
+```sh
+npm ci
+npm run docs:dev
+npm run docs:check
+```
+
+Open `http://localhost:4188`. Local search requires a Mintlify login.

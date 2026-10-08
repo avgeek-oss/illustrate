@@ -1,0 +1,37 @@
+---
+title: "Data & privacy"
+description: "How Illustrate stores your work and connects to AI providers."
+---
+
+## Provider requests
+
+Illustrate sends prompts, generation settings, and the source or reference media
+you select directly to the provider handling that request. Providers process
+that data under their own terms and retention policies. Check those policies
+before submitting sensitive material.
+
+## Credentials
+
+Credentials are stored in Apple Keychain and scoped to a project and provider.
+This version enables Keychain synchronization where supported by your Apple
+account and device settings. Deleting a connection in Illustrate does not revoke
+the credential at the provider; revoke it in the provider's console.
+
+## Projects and media
+
+The app stores project data using SwiftData and supports private CloudKit
+synchronization. Generated media uses local files and iCloud storage where
+available. Sync depends on signing entitlements, iCloud availability, and your
+account settings. Keep independent backups of work you need to retain.
+
+Product photoshoot backdrops can be downloaded from Illustrate's content CDN.
+Exports, logs, screenshots, and generated files may contain prompts, images,
+or account information. Review them before sharing.
+
+## Reporting a problem
+
+Report bugs and feedback through
+[GitHub Issues](https://github.com/avgeek-oss/illustrate/issues).
+Include the app version and steps to reproduce. Never post API keys, private
+prompts, account information, or unpublished media. We accept reports and
+feedback, not external code contributions.
